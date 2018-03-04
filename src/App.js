@@ -26,7 +26,7 @@ class App extends Component {
         <p>
           This Contract is managed by {this.state.manager}.
           There are currently {this.state.players.length} players in the game.
-          The total amount of the lottery is {this.state.balance} ether!
+          The total amount of the lottery is {web3.utils.fromWei(this.state.balance, 'ether')} ether!
         </p>
       </div>
     );
