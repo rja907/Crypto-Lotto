@@ -7,12 +7,14 @@ import lottery from './lottery';
 class App extends Component {
   state = {
     manager: '',
-    players: []
+    players: [],
+    balance: ''
   };
   async componentDidMount(){
     const manager = await lottery.methods.manager().call();
     const players = await lottery.methods.getPlayers().call();
-    this.setState({ manager, players });
+    const balance = await web3.eth.getBalance(lottery.options.address);
+    this.setState({ manager, players, balance });
   }
   render() {
     //console.log(web3.version); // to make sure correct version of web3 has been installed.
@@ -24,6 +26,7 @@ class App extends Component {
         <p>
           This Contract is managed by {this.state.manager}.
           There are currently {this.state.players.length} players in the game.
+          The total amount of the lottery is {this.state.balance} ether!
         </p>
       </div>
     );
