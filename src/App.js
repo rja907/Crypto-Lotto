@@ -34,11 +34,13 @@ class App extends Component {
           <label>
             Amount of Ether you want to enter with
           </label>
+          <br /><br />
           <input
+            style={{marginLeft:" 30px"}}
             value = {this.state.value}
             onChange={event => this.setState({value: event.target.value })}
            />
-           <button>
+           <button style={{marginLeft:" 20px"}}>
             Enter!
            </button>
         </form>
