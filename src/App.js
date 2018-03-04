@@ -20,7 +20,7 @@ class App extends Component {
   render() {
     //console.log(web3.version); // to make sure correct version of web3 has been installed.
     return (
-      <div>
+      <div style={{color:'white'}}>
         <h2>
           Lottery Contract
         </h2>
