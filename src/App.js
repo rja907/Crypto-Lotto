@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import web3 from './web3';
+import lottery from './lottery';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = { manager: '' };
+  }
+  async componentDidMount(){
+    const manager = await lottery.methods.manager().call();
+    this.setState({ manager });
+  }
   render() {
     //console.log(web3.version); // to make sure correct version of web3 has been installed.
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      
     );
   }
 }
