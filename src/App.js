@@ -8,7 +8,8 @@ class App extends Component {
   state = {
     manager: '',
     players: [],
-    balance: ''
+    balance: '',
+    value: ''
   };
   async componentDidMount(){
     const manager = await lottery.methods.manager().call();
@@ -28,6 +29,19 @@ class App extends Component {
           There are currently <strong>{this.state.players.length}</strong> players in the game.<hr />
           The total amount of the lottery is <strong>{web3.utils.fromWei(this.state.balance, 'ether')}</strong> ether!<hr />
         </p>
+        <form>
+          <h4>Feeling lucky?</h4>
+          <label>
+            Amount of Ether you want to enter with
+          </label>
+          <input
+            value = {this.state.value}
+            onChange={event => this.setState({value: event.target.value })}
+           />
+           <button>
+            Enter!
+           </button>
+        </form>
       </div>
     );
   }
