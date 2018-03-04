@@ -23,10 +23,10 @@ class App extends Component {
         <h2>
           Lottery Contract
         </h2>
-        <p>
-          This Contract is managed by {this.state.manager}.
-          There are currently {this.state.players.length} players in the game.
-          The total amount of the lottery is {web3.utils.fromWei(this.state.balance, 'ether')} ether!
+        <p><hr /><hr /><br />
+          This Contract is managed by <strong>{this.state.manager}</strong>.<hr />
+          There are currently <strong>{this.state.players.length}</strong> players in the game.<hr />
+          The total amount of the lottery is <strong>{web3.utils.fromWei(this.state.balance, 'ether')}</strong> ether!<hr />
         </p>
       </div>
     );
