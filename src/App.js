@@ -16,7 +16,14 @@ class App extends Component {
   render() {
     //console.log(web3.version); // to make sure correct version of web3 has been installed.
     return (
-      
+      <div>
+        <h2>
+          Lottery Contract
+        </h2>
+        <p>
+          This Contract is managed by {this.state.manager}
+        </p>
+      </div>
     );
   }
 }
