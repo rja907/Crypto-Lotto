@@ -17,6 +17,14 @@ class App extends Component {
     const balance = await web3.eth.getBalance(lottery.options.address);
     this.setState({ manager, players, balance });
   }
+  onSubmit = async ( event ) => {
+    event.preventDefault();
+    const accounts = await web3.eth.getAccounts();
+    await lottery.methods.enter().send({
+      from: accounts[0],
+      value: web3.utils.toWei(this.state.value, 'ether')
+    });
+  }
   render() {
     //console.log(web3.version); // to make sure correct version of web3 has been installed.
     return (
@@ -29,7 +37,7 @@ class App extends Component {
           There are currently <strong>{this.state.players.length}</strong> players in the game.<hr />
           The total amount of the lottery is <strong>{web3.utils.fromWei(this.state.balance, 'ether')}</strong> ether!<hr />
         </p>
-        <form>
+        <form onSubmit={this.onSubmit}>
           <h4>Feeling lucky?</h4>
           <label>
             Amount of Ether you want to enter with
