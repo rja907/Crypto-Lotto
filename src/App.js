@@ -9,7 +9,8 @@ class App extends Component {
     manager: '',
     players: [],
     balance: '',
-    value: ''
+    value: '',
+    message: ''
   };
   async componentDidMount(){
     const manager = await lottery.methods.manager().call();
@@ -17,13 +18,15 @@ class App extends Component {
     const balance = await web3.eth.getBalance(lottery.options.address);
     this.setState({ manager, players, balance });
   }
-  onSubmit = async ( event ) => {
+  onSubmit = async event => {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
+    this.setState({ message: 'Transcation in progress...'});
     await lottery.methods.enter().send({
       from: accounts[0],
       value: web3.utils.toWei(this.state.value, 'ether')
     });
+    this.setState({ message: 'You have been entered! Good luck!'});
   }
   render() {
     //console.log(web3.version); // to make sure correct version of web3 has been installed.
@@ -52,6 +55,10 @@ class App extends Component {
             Enter!
            </button>
         </form>
+        <hr />
+        <h1>
+          {this.state.message}
+        </h1>
       </div>
     );
   }
