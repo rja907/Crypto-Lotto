@@ -27,7 +27,15 @@ class App extends Component {
       value: web3.utils.toWei(this.state.value, 'ether')
     });
     this.setState({ message: 'You have been entered! Good luck!'});
-  }
+  };
+  onClick = async event => {
+    const accounts = await web3.eth.getAccounts();
+    this.setState({ message: 'Almost there...' });
+    await lottery.methods.pickWinner().send({
+      from: accounts[0]
+    });
+    this.setState({ message: 'A winner had been picked!'});
+  };
   render() {
     //console.log(web3.version); // to make sure correct version of web3 has been installed.
     return (
@@ -55,6 +63,11 @@ class App extends Component {
             Enter!
            </button>
         </form>
+        <hr />
+        <h4>
+          Want to pick a winner?
+        </h4>
+        <button onClick={this.onClick}>Pick a winner!</button>
         <hr />
         <h1>
           {this.state.message}
