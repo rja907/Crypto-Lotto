@@ -21,7 +21,7 @@ class App extends Component {
   onSubmit = async event => {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
-    this.setState({ message: 'Transcation in progress...'});
+    this.setState({ message: 'Transaction in progress...'});
     await lottery.methods.enter().send({
       from: accounts[0],
       value: web3.utils.toWei(this.state.value, 'ether')
